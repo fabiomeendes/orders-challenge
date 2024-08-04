@@ -16,7 +16,7 @@ class Program
 
         while (true)
         {
-            Console.WriteLine("Enter Order Id:");
+            Console.WriteLine("Enter Order Code:");
             var orderId = Console.ReadLine();
 
             Console.WriteLine("Enter Customer Id:");
@@ -24,7 +24,7 @@ class Program
 
             var order = new OrderMessage
             {
-                CodigoPedido = int.Parse(orderId),
+                CodigoPedido = orderId,
                 CodigoCliente = int.Parse(customerId),
                 Itens = new[]
                 {
@@ -48,7 +48,7 @@ class Program
 
 public class OrderMessage
 {
-    public int CodigoPedido { get; set; }
+    public string CodigoPedido { get; set; }
     public int CodigoCliente { get; set; }
     public OrderItem[] Itens { get; set; }
 }

@@ -3,7 +3,9 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using Service.Order.API.Core.Repositories;
 using System.Text;
+using System.Threading.Channels;
 
 namespace Service.Order.API.Consumers
 {
@@ -58,11 +60,17 @@ namespace Service.Order.API.Consumers
                     }).ToList()
                 };
 
-                Console.WriteLine(json);
-
-                //await ProcessOrder(@event);
-
-                _channel.BasicAck(eventArgs.DeliveryTag, false);
+                try
+                {
+                    await ProcessOrder(@event);
+                    _channel.BasicAck(eventArgs.DeliveryTag, false);
+                }
+                catch (Exception ex)
+                {
+                    // logging
+                    // Handle processing failure
+                    //_channel.BasicNack(eventArgs.DeliveryTag, false, true);
+                }
             };
 
             _channel.BasicConsume(Queue, false, consumer);
@@ -70,14 +78,20 @@ namespace Service.Order.API.Consumers
             return Task.CompletedTask;
         }
 
-        //private async Task ProcessOrder(OrderMessage order)
-        //{
-        //    using (var scope = _serviceProvider.CreateScope())
-        //    {
-        //        var repository = scope.ServiceProvider.GetRequiredService<IOrderRepository>();
-        //        await repository.AddOrder(order);
-        //    }
-        //}
+        private async Task ProcessOrder(Core.Entities.Order order)
+        {
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var orderRepository = scope.ServiceProvider.GetRequiredService<IOrderRepository>();
+                var customerRepository = scope.ServiceProvider.GetRequiredService<ICustomerRepository>();
+
+                var customer = await customerRepository.GetCustomerAsync(order.CustomerId);
+                if (customer != null)
+                {
+                    await orderRepository.AddOrderAsync(order);
+                }
+            }
+        }
     }
 
     public class OrderMessage

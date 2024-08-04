@@ -7,6 +7,5 @@
         public decimal TotalValue { get; set; }
         public string Code { get; set; }
         public List<OrderItem> OrderItems { get; set; }
-        public Customer Customer { get; set; }
     }
 }

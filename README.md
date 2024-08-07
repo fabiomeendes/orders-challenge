@@ -2,9 +2,9 @@
 
 ## Microservice challenge - Orders and Customers
 
-This project demonstrates a microservices-based order processing system using .NET, RabbitMQ, PostgreSQL, and Dapper/Entity Framework. The system consists of three main components:
-
 > IMPORTANT: Docker is not used in this project because I recently updated my operating system to Windows 11 Home, which does not support Docker Desktop. Resolving this issue is a priority, and implementing Docker will be the first thing on my wish list once it is addressed.
+
+This project demonstrates a microservices-based order processing system using .NET, RabbitMQ, PostgreSQL, and Dapper/Entity Framework. The system consists of three main components:
 
 1. **Order.Publisher**: A console application that publishes order messages to RabbitMQ.
 2. **Service.Order**: A web API that subscribes to RabbitMQ messages, processes them, and saves orders to the database using Dapper.

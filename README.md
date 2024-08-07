@@ -25,10 +25,14 @@ This project demonstrates a microservices-based order processing system using .N
 
 ### Getting Started
 
-#### Prerequisites
-- .NET Core SDK
-- RabbitMQ
-- PostgreSQL
+#### Prerequisites - Libraries
+- .NET 7
+- RabbitMQ.Client 6.8.1
+- Dapper 2.1.35
+- Newtonsoft.Json 13.0.3
+- Npgsql 8.0.3
+- Microsoft.EntityFrameworkCore 7.0.20
+- Npgsql.EntityFrameworkCore.PostgreSQL 7.0.18
 
 #### Setting Up PostgreSQL
 
@@ -141,3 +145,7 @@ GET /api/customers/{customerId}/orders
 **Service.Order** subscribes to the order messages from RabbitMQ and processes them.
 
 > By following these steps, you should be able to set up and run the project locally. If you encounter any issues, please refer to the documentation or open an issue in the repository.
+
+### Tech Report
+
+Access the [technical report](https://docs.google.com/document/d/1-MTEprrOzgiwaEpI-lBqW46dcLWQYjpWC5mVX--2qkM/edit?usp=sharing) for additional information.

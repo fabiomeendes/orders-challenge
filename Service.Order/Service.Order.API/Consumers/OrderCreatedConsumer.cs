@@ -47,6 +47,8 @@ namespace Service.Order.API.Consumers
                 var json = Encoding.UTF8.GetString(contentArray);
                 var orderMessage = JsonConvert.DeserializeObject<OrderMessage>(json);
 
+                Console.WriteLine(json);
+
                 var @event = new Core.Entities.Order
                 {
                     CustomerId = orderMessage.CodigoCliente,
@@ -63,6 +65,7 @@ namespace Service.Order.API.Consumers
                 try
                 {
                     await ProcessOrder(@event);
+                    Console.WriteLine("Message: READ");
                     _channel.BasicAck(eventArgs.DeliveryTag, false);
                 }
                 catch (Exception ex)

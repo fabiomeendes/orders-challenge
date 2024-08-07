@@ -49,31 +49,31 @@ CREATE DATABASE orderdb;
 - Run the following SQL script to create the necessary tables:
 
 ```sql
-CREATE TABLE Customers (
-    CustomerId SERIAL PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL
+CREATE TABLE customers (
+    customerid SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE Orders (
-    OrderId SERIAL PRIMARY KEY,
-	Code VARCHAR(100) NOT NULL,
-    CustomerId INT NOT NULL,
-    TotalValue DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId)
+CREATE TABLE orders (
+    orderid SERIAL PRIMARY KEY,
+    code VARCHAR(100) NOT NULL,
+    customerid INT NOT NULL,
+    totalvalue DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (customerid) REFERENCES customers(customerid)
 );
 
-CREATE TABLE OrderItems (
-    OrderItemId SERIAL PRIMARY KEY,
-    OrderId INT NOT NULL,
-    Product VARCHAR(100) NOT NULL,
-    Quantity INT NOT NULL,
-    Price DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (OrderId) REFERENCES Orders(OrderId)
+CREATE TABLE orderitems (
+    orderitemid SERIAL PRIMARY KEY,
+    orderid INT NOT NULL,
+    product VARCHAR(100) NOT NULL,
+    quantity INT NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (orderid) REFERENCES orders(orderid)
 );
 
 -- insert dummy data
-INSERT INTO Customers (Name) VALUES ('Customer 1');
-INSERT INTO Customers (Name) VALUES ('Customer 2');
+INSERT INTO customers (name) VALUES ('Customer 1');
+INSERT INTO customers (name) VALUES ('Customer 2');
 ```
 
 ### RabbitMQ Setup

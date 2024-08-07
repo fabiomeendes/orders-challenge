@@ -1,10 +1,17 @@
-﻿namespace Service.OrderManagement.API.Application.Services
+﻿using Service.OrderManagement.API.Core.Repositories;
+
+namespace Service.OrderManagement.API.Application.Services
 {
     public class OrderService : IOrderService
     {
-        public Task<decimal> GetTotalValue(int orderId)
+        private IOrderRepository _orderRepository;
+        public OrderService(IOrderRepository OrderRepository)
         {
-            throw new NotImplementedException();
+            _orderRepository = OrderRepository;
+        }
+        public async Task<decimal> GetTotalValue(int orderId)
+        {
+            return await _orderRepository.GetTotalValueAsync(orderId);
         }
     }
 }

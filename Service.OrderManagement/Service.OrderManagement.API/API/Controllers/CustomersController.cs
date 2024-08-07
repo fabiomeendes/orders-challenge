@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Service.OrderManagement.API.Application.Services;
 
-namespace Service.Customer.API.API.Controllers
+namespace Service.OrderManagement.API.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

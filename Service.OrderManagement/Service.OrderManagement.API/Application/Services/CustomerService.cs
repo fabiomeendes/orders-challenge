@@ -1,17 +1,28 @@
 ﻿using Service.OrderManagement.API.Application.ViewModels;
+using Service.OrderManagement.API.Core.Repositories;
 
 namespace Service.OrderManagement.API.Application.Services
 {
     public class CustomerService : ICustomerService
     {
-        public Task<int> GetOrderCountForCustomer(int customerId)
+        private ICustomerRepository _customerRepository;
+        public CustomerService(ICustomerRepository customerRepository)
         {
-            throw new NotImplementedException();
+            _customerRepository = customerRepository;
         }
 
-        public Task<List<OrderViewModel>> GetOrdersForCustomer(int customerId)
+        public async Task<int> GetOrderCountForCustomer(int customerId)
         {
-            throw new NotImplementedException();
+            return await _customerRepository.GetOrderCountForCustomerAsync(customerId);
+        }
+
+        public async Task<List<OrderViewModel>> GetOrdersForCustomer(int customerId)
+        {
+            var orders = await _customerRepository.GetOrdersForCustomerAsync(customerId);
+
+            var viewModels = orders.Select(o => new OrderViewModel(o)).ToList();
+
+            return viewModels;
         }
     }
 }

@@ -89,7 +89,7 @@ rabbitmq-server
 
 ### Running the Project
 
-1. Order.Publisher:
+1. Order.Publisher: (to save the data correctly in the Service.Order, you should send a valid customerid here e.g.: 1 or 2).
 - Navigate to the Order.Publisher folder.
 - Restore dependencies and run the application:
 

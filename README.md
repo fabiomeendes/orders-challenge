@@ -2,7 +2,7 @@
 
 ## Microservice challenge - Orders and Customers
 
-> IMPORTANT: Docker is not used in this project because I recently updated my operating system to Windows 10 Home, which does not support Docker Desktop. Resolving this issue is a priority, and implementing Docker will be the first thing on my wish list once it is addressed.
+> IMPORTANT: Docker is not used in this project because I recently updated my operating system to Windows 11 Home, which does not support Docker Desktop. Resolving this issue is a priority, and implementing Docker will be the first thing on my wish list once it is addressed.
 
 This project demonstrates a microservices-based order processing system using .NET, RabbitMQ, PostgreSQL, and Dapper/Entity Framework. The system consists of three main components:
 
